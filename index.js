@@ -1,28 +1,42 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
+import chalk from "chalk";
 const answer = await inquirer.prompt([
-    { message: "Enter your first number", type: "number", name: "firstNumber" },
-    { message: "Enter your second number", type: "number", name: "secondNumber" },
     {
-        message: "select one of operator to perform action ",
+        name: "firstNumber",
+        type: "number",
+        message: chalk.yellow("Enter your first number"),
+    },
+    {
+        name: "secondNumber",
+        type: "number",
+        message: chalk.yellow("Enter your second number"),
+    },
+    {
+        message: chalk.yellow("select one of operator to perform action "),
         type: "list",
         name: "operator",
-        choices: ["ADDITION", "SUBTRACTION", "MULTIPLICATION", "DIVISION"],
+        choices: [
+            chalk.magenta("ADDITION"),
+            chalk.green("SUBTRACTION"),
+            chalk.magenta("MULTIPLICATION"),
+            chalk.green("DIVISION")
+        ],
     },
 ]);
 // CONDITIONAL STATEMENT
-if (answer.operator === "ADDITION") {
+if (answer.operator === chalk.magenta("ADDITION")) {
     console.log(answer.firstNumber + answer.secondNumber);
 }
-else if (answer.operator === "SUBTRACTION") {
+else if (answer.operator === chalk.green("SUBTRACTION")) {
     console.log(answer.firstNumber - answer.secondNumber);
 }
-else if (answer.operator === "MULTIPLICATION") {
+else if (answer.operator === chalk.magenta("MULTIPLICATION")) {
     console.log(answer.firstNumber * answer.secondNumber);
 }
-else if (answer.operator === "DIVISION") {
+else if (answer.operator === chalk.green("DIVISION")) {
     console.log(answer.firstNumber / answer.secondNumber);
 }
 else {
-    "Please select correct operator";
+    (chalk.red("Please select correct operator"));
 }
-;
